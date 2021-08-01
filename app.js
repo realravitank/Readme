@@ -8,6 +8,7 @@ app.use(express.json());
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 
+
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 
