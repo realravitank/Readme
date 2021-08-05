@@ -17,9 +17,8 @@ class Note {
         data.note
       ]
     );
-    let note = result.rows[0];
 
-    return note;
+    return result.rows[0];
   }
 
  
@@ -46,9 +45,8 @@ class Note {
       [title]
     );
 
-    const note = result.rows[0];
 
-    return note;
+    return result.rows[0];
   }
 
 
@@ -57,7 +55,6 @@ class Note {
       'DELETE FROM notes WHERE note = $1 RETURNING note',
       [note]
     );
-    const note = result.rows[0];
     return true;
   }
 }

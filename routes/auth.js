@@ -9,6 +9,7 @@ const createTokenForUser = require('../helpers/createToken');
 
 router.post('/signup', async function(req, res, next) {
   try {
+      console.log("signup");
     const { username, password, email, hours } = req.body;
     let user = await User.register({username, password, email, hours});
     const token = createTokenForUser(username);

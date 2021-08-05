@@ -1,4 +1,11 @@
+DROP DATABASE IF EXISTS readme;
+
+CREATE DATABASE readme;
+
+
 \connect readme;
+
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   username TEXT PRIMARY KEY,
@@ -7,33 +14,45 @@ CREATE TABLE users (
   hours INTEGER NOT NULL
 );
 
+DROP TABLE IF EXISTS books;
+
+
 CREATE TABLE books (
   title TEXT PRIMARY KEY,
   pages INTEGER,
-  username INTEGER
+  username TEXT
     REFERENCES users ON DELETE CASCADE
 );
 
-CREATE TABLE fav (
-  username INTEGER
+DROP TABLE IF EXISTS favs;
+
+
+CREATE TABLE favs (
+  username TEXT
     REFERENCES users ON DELETE CASCADE,
-  title INTEGER
+  title TEXT
     REFERENCES books ON DELETE CASCADE,
   PRIMARY KEY (username, title)
 );
 
-CREATE TABLE haveread (
-  username INTEGER
+DROP TABLE IF EXISTS havereads;
+
+
+CREATE TABLE havereads (
+  username TEXT
     REFERENCES users ON DELETE CASCADE,
-  title INTEGER
+  title TEXT
     REFERENCES books ON DELETE CASCADE,
   PRIMARY KEY (username, title)
 );
+
+DROP TABLE IF EXISTS notes;
+
 
 CREATE TABLE notes (
-  username INTEGER
+  username TEXT
     REFERENCES users ON DELETE CASCADE,
-  title INTEGER
+  title TEXT
     REFERENCES books ON DELETE CASCADE,
   note TEXT,
   PRIMARY KEY (username, title)
